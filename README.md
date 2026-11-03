@@ -1,10 +1,10 @@
 # Australian Hospital Performance Analytics
 
-An end-to-end project using the AIHW MyHospitals API to explore emergency department and elective surgery performance across Australian hospitals. It brings together API ingestion, data transformation, dimensional modelling, and Power BI reporting in Microsoft Fabric.
+An end-to-end data engineering and analytics project built on Microsoft Fabric, using the AIHW MyHospitals API to analyse emergency department and elective surgery performance across Australian hospitals. The project implements a Bronze–Silver–Gold medallion architecture, from REST API ingestion and PySpark transformations to dimensional modelling, a semantic model, and interactive Power BI dashboards.
 
-I wanted to build something that covers both sides of analytics: the data engineering work needed to collect, prepare, and model the data, and the reporting layer that makes the results easier to explore.
+The workflow uses Microsoft Fabric Data Factory pipelines for ingestion and end-to-end orchestration, Fabric Lakehouse and Delta Lake for data storage, PySpark for data processing, and Power BI with DAX for reporting. A scheduled master pipeline coordinates the ingestion, transformation, Gold modelling, and semantic model refresh.
 
-I used ChatGPT (GPT-6, OpenAI) and Claude (Anthropic) as supporting tools during development, mainly for troubleshooting, exploring implementation options, and reviewing code and documentation. The project idea, architecture, modelling approach, and decisions about the analysis were mine.
+Developed through AI-assisted pair programming, with Claude (Anthropic) and ChatGPT (OpenAI) supporting implementation, troubleshooting, and technical reviews. The project concept, architecture, technology selections, data modelling approach, and final design decisions were my own. I used AI tools to accelerate development, explore solutions, and review code, while taking responsibility for understanding, testing, and validating each component of the implementation.
 
 ## Architecture
 
@@ -55,19 +55,62 @@ The transformation notebooks include checks for source measure coverage, missing
 
 Suppressed or unavailable values are retained with their related source information rather than being treated as ordinary numeric observations. National reporting records and national benchmarks are also kept distinct from individual hospital records, so they are not accidentally treated as additional hospitals in hospital-level comparisons.
 
-## Repository structure
+### Directory Overview
+
+| Directory / File | Description |
+|---|---|
+| `docs/` | Architecture diagram and Power BI dashboard screenshots |
+| `notebooks/` | API exploration, Bronze ingestion, Silver transformation, and Gold modelling notebooks |
+| `pipelines/` | Exported Fabric pipeline definitions for ingestion and orchestration |
+| `semantic_model/` | TMDL semantic model definition, relationships, tables, and DAX measures |
+| `project_context.md` | Project background, business problem, objectives, and scope |
+| `project_plan.md` | Development stages, implementation decisions, and future improvements |
+| `.gitignore` | Excludes local environments, temporary files, and generated data from Git |
+
+## Project Structure
 
 ```text
-.
-├── docs/             # Architecture and dashboard screenshots
-├── notebooks/        # Exploration, ingestion, Silver, and Gold notebooks
-├── pipelines/        # Fabric pipeline definitions
-├── semantic_model/   # TMDL semantic model definition
-├── .gitignore
-└── README.md
+australian-hospital-performance-analytics/
+│
+├── docs/
+│   ├── aihw_architecture.png
+│   ├── emergency_department_dashboard.png
+│   └── elective_surgery_dashboard.png
+│
+├── notebooks/
+│   ├── README.md
+│   ├── aihw_data_exploration.ipynb
+│   ├── bronze_aihw_metadata_ingestion.ipynb
+│   ├── silver_aihw_data_transformation.ipynb
+│   └── gold_aihw_performance_model.ipynb
+│
+├── pipelines/
+│   ├── README.md
+│   ├── pl_aihw_bronze_ingestion.json
+│   └── pl_aihw_master_orchestration.json
+│
+├── semantic_model/
+│   ├── README.md
+│   ├── .platform
+│   ├── definition.pbism
+│   └── definition/
+│       ├── database.tmdl
+│       ├── expressions.tmdl
+│       ├── model.tmdl
+│       ├── relationships.tmdl
+│       └── tables/
+│           ├── gold_dim_measure.tmdl
+│           ├── gold_dim_period.tmdl
+│           ├── gold_dim_reported_measure.tmdl
+│           ├── gold_dim_reporting_unit.tmdl
+│           ├── gold_fact_measure_value.tmdl
+│           └── Hospital Display.tmdl
+│
+├── project_context.md
+├── project_plan.md
+├── README.md
+└── .gitignore
 ```
-
-More detailed notes on the project context, plan, and individual pipeline layers will be added separately so this README can stay focused on the overall project.
 
 ## Running the project
 
