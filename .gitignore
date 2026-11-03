@@ -1,0 +1,43 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS / editor files
+.DS_Store
+.AppleDouble
+.LS
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Local data and generated database files
+data/raw/
+data/processed/
+*.parquet
+*.delta
+*.db
+*.sqlite
+
+# Local exports / large Power BI files (uncomment if you do not intend to publish them)
+# *.pbix
+# *.pbit

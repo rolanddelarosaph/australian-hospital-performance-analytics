@@ -1,0 +1,153 @@
+table gold_dim_reporting_unit
+	lineageTag: e5117ee1-0734-4960-8a90-356a74f675a4
+	sourceLineageTag: [dbo].[gold_dim_reporting_unit]
+
+	column reporting_unit_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 98b1136e-a6a8-45fe-9126-0b529224674c
+		sourceLineageTag: reporting_unit_key
+		summarizeBy: none
+		sourceColumn: reporting_unit_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_unit_code
+		dataType: string
+		lineageTag: d671719a-8e11-41ca-ac2c-b2e66fd91a4e
+		sourceLineageTag: reporting_unit_code
+		summarizeBy: none
+		sourceColumn: reporting_unit_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_unit_name
+		dataType: string
+		lineageTag: f56c0c4a-e476-4428-b567-adeb01c70671
+		sourceLineageTag: reporting_unit_name
+		summarizeBy: none
+		sourceColumn: reporting_unit_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_unit_type_code
+		dataType: string
+		lineageTag: 7a47fc48-ac46-4554-a137-8d5fed49e0e7
+		sourceLineageTag: reporting_unit_type_code
+		summarizeBy: none
+		sourceColumn: reporting_unit_type_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_unit_type_name
+		dataType: string
+		lineageTag: 272b4c21-846a-4c4b-801d-522d143dafe8
+		sourceLineageTag: reporting_unit_type_name
+		summarizeBy: none
+		sourceColumn: reporting_unit_type_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: a0c985db-36fc-4c16-aa5d-9baf9558f6d1
+		sourceLineageTag: latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 3fb240f7-d353-49d4-a71b-4a063aaf378f
+		sourceLineageTag: longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_private
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5a0130dd-56f3-478a-bd83-c422975c2b33
+		sourceLineageTag: is_private
+		summarizeBy: none
+		sourceColumn: is_private
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_closed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0dfa6bf7-c653-4b18-8b9a-3b497780ff6b
+		sourceLineageTag: is_closed
+		summarizeBy: none
+		sourceColumn: is_closed
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_code
+		dataType: string
+		lineageTag: b1582acb-fa5b-44ee-970f-1661b770d429
+		sourceLineageTag: state_code
+		summarizeBy: none
+		sourceColumn: state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_name
+		dataType: string
+		lineageTag: cc0a0c18-d6f9-4ab4-b74b-99d22053c2ff
+		sourceLineageTag: state_name
+		summarizeBy: none
+		sourceColumn: state_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column lhn_code
+		dataType: string
+		lineageTag: b8ad2e51-3061-4b91-88a5-014e2877df59
+		sourceLineageTag: lhn_code
+		summarizeBy: none
+		sourceColumn: lhn_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column lhn_name
+		dataType: string
+		lineageTag: ae713406-b0e7-4bbf-85ef-b6f150fa9ffd
+		sourceLineageTag: lhn_name
+		summarizeBy: none
+		sourceColumn: lhn_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column phn_code
+		dataType: string
+		lineageTag: 6af1e445-cbef-4049-8743-32053151cf42
+		sourceLineageTag: phn_code
+		summarizeBy: none
+		sourceColumn: phn_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column phn_name
+		dataType: string
+		lineageTag: 15a55218-713a-4382-862e-98e7354644e2
+		sourceLineageTag: phn_name
+		summarizeBy: none
+		sourceColumn: phn_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_reporting_unit = entity
+		mode: directLake
+		source
+			entityName: gold_dim_reporting_unit
+			schemaName: dbo
+			expressionSource: 'DirectLake - HospitalAnalyticsLakehouse'
+

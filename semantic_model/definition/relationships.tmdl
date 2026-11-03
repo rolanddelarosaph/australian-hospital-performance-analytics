@@ -1,0 +1,20 @@
+relationship 6f1a9aa5-9693-cb49-d613-24b8a0539fc1
+	relyOnReferentialIntegrity
+	fromColumn: gold_fact_measure_value.measure_key
+	toColumn: gold_dim_measure.measure_key
+
+relationship 41409b47-5075-bc58-1486-f2db81d913b0
+	relyOnReferentialIntegrity
+	fromColumn: gold_fact_measure_value.period_key
+	toColumn: gold_dim_period.period_key
+
+relationship 81cfd5c4-f276-89ba-3700-da8a0677e58d
+	relyOnReferentialIntegrity
+	fromColumn: gold_fact_measure_value.reported_measure_code
+	toColumn: gold_dim_reported_measure.reported_measure_code
+
+relationship 7e24b3fe-0f40-aa48-95d1-d0687f9ab9fe
+	relyOnReferentialIntegrity
+	fromColumn: gold_fact_measure_value.reporting_unit_code
+	toColumn: gold_dim_reporting_unit.reporting_unit_code
+

@@ -1,0 +1,100 @@
+table gold_dim_measure
+	lineageTag: d06f1dd0-5109-448d-ac8a-9a9fd65d7665
+	sourceLineageTag: [dbo].[gold_dim_measure]
+
+	measure Measure
+		lineageTag: 83046a02-5e42-4f04-be1f-63c52ddc3ae9
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	column measure_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fd3d96c-de81-4948-99e3-0a85020f494c
+		sourceLineageTag: measure_key
+		summarizeBy: none
+		sourceColumn: measure_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column measure_code
+		dataType: string
+		lineageTag: c49042c4-eea2-4c46-a41d-fcdde33c37c8
+		sourceLineageTag: measure_code
+		summarizeBy: none
+		sourceColumn: measure_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column measure_name
+		dataType: string
+		lineageTag: 7753bd44-63f0-4f14-aaf9-9d9570bea4dc
+		sourceLineageTag: measure_name
+		summarizeBy: none
+		sourceColumn: measure_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column measure_category_code
+		dataType: string
+		lineageTag: 4525e687-78c0-4dfd-945e-a4f098399257
+		sourceLineageTag: measure_category_code
+		summarizeBy: none
+		sourceColumn: measure_category_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column measure_category_name
+		dataType: string
+		lineageTag: 0197c650-e03f-423d-b92d-2af58c84a69f
+		sourceLineageTag: measure_category_name
+		summarizeBy: none
+		sourceColumn: measure_category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column units_name
+		dataType: string
+		lineageTag: 84b262af-57eb-45cb-9b13-10139a8de2e2
+		sourceLineageTag: units_name
+		summarizeBy: none
+		sourceColumn: units_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column units_display
+		dataType: string
+		lineageTag: 2ee4a60f-97b6-4c12-8638-83b46797b2cf
+		sourceLineageTag: units_display
+		summarizeBy: none
+		sourceColumn: units_display
+
+		annotation SummarizationSetBy = Automatic
+
+	column decimal_places
+		dataType: int64
+		formatString: 0
+		lineageTag: 17025181-2aae-44d6-8c45-8d66b9218835
+		sourceLineageTag: decimal_places
+		summarizeBy: none
+		sourceColumn: decimal_places
+
+		annotation SummarizationSetBy = Automatic
+
+	column units_are_prefix
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 18815224-afe5-4ce0-b622-f86ce55ba73c
+		sourceLineageTag: units_are_prefix
+		summarizeBy: none
+		sourceColumn: units_are_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_measure = entity
+		mode: directLake
+		source
+			entityName: gold_dim_measure
+			schemaName: dbo
+			expressionSource: 'DirectLake - HospitalAnalyticsLakehouse'
+

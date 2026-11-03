@@ -1,0 +1,587 @@
+table gold_fact_measure_value
+	lineageTag: b7c3b26e-9fa0-4f5f-b314-fc0f9d6c8a74
+	sourceLineageTag: [dbo].[gold_fact_measure_value]
+
+	measure 'Observation Count' =
+			
+			COUNTROWS('gold_fact_measure_value')
+		formatString: 0
+		lineageTag: be196571-49d9-4b15-bc0f-6ddcc06d6c2f
+
+		changedProperty = Name
+
+	measure '4-Hour Departure Rate' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0005",
+			    'gold_fact_measure_value'[suppression_count] = 0
+			)
+		formatString: 0.0
+		lineageTag: a93847f2-52ff-45b5-8036-3804581596d1
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'ED Presentations' = ```
+			
+			CALCULATE(
+			    SUM('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0011",
+			    'gold_fact_measure_value'[suppression_count] = 0
+			)
+			
+			```
+		lineageTag: abb23e04-ee39-4067-bdac-884aacc1ca16
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median ED Departure Time' = ```
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0036",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+			
+			```
+		lineageTag: c5e782ef-5940-4f7c-b7b9-519bc88f91c3
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Elective Surgery Wait (Days)' = ```
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0009",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+			
+			```
+		formatString: 0.0
+		lineageTag: 6bd321da-03f0-4805-af62-9171bbf30bd2
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Elective Surgery Within Recommended Time' = ```
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0008",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+			
+			```
+		formatString: 0.0
+		lineageTag: 588fa8a9-ab02-4ab9-a2a9-3b99276f442c
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure '90% ED Departure Time' = ```
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0013",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+			
+			```
+		lineageTag: 626ea3f9-53bc-452d-bcf9-333c4c5a1964
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Elective Patients Waiting Over 365 Days (%)' = ```
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0007",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+			
+			```
+		formatString: 0.0
+		lineageTag: 695b3a3a-ccec-4ce4-9967-b8a14c814cfe
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Hospital Admissions' =
+			
+			CALCULATE(
+			    SUM('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0024",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+		lineageTag: ae2967bb-0261-4724-92a8-3a0024a8fa79
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Length of Overnight Stay' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0014",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+		formatString: 0.0
+		lineageTag: 8d3cb7b6-90b4-485e-a467-5f00f7bbb832
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Overnight Hospital Stays' =
+			
+			CALCULATE(
+			    SUM('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0017",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 5eac6c54-d6ec-45d9-90bc-ee37ef8605b5
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'National 4-Hour Departure Rate' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    REMOVEFILTERS('gold_dim_reporting_unit'),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0005",
+			    'gold_fact_measure_value'[reporting_unit_code] = "NAT",
+			    'gold_fact_measure_value'[suppression_count] = 0
+			)
+		lineageTag: 74088e5e-58f9-4991-9f7c-90ad24bc387a
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Hospital Display Filter' =
+			
+			VAR SelectedDisplay =
+			    SELECTEDVALUE('Hospital Display'[Display], "Top 10")
+			
+			VAR HospitalRank =
+			    RANKX(
+			        ALLSELECTED(
+			            'gold_dim_reporting_unit'[reporting_unit_key]
+			        ),
+			        [Median ED Departure Time],
+			        ,
+			        DESC,
+			        DENSE
+			    )
+			
+			RETURN
+			    IF(
+			        SelectedDisplay = "All"
+			            || HospitalRank <= 10,
+			        1,
+			        0
+			    )
+		formatString: 0
+		lineageTag: 8d3c17d7-2ee2-467e-b1b6-b05605d18775
+
+		changedProperty = Name
+
+	measure 'Median ED Departure Time (Display)' =
+			
+			VAR SelectedDisplay =
+			    SELECTEDVALUE('Hospital Display'[Display], "All")
+			
+			VAR HospitalRank =
+			    RANKX(
+			        ALLSELECTED('gold_dim_reporting_unit'[reporting_unit_name]),
+			        [Median ED Departure Time],
+			        ,
+			        DESC,
+			        DENSE
+			    )
+			
+			RETURN
+			    IF(
+			        SelectedDisplay = "Top 10" && HospitalRank > 10,
+			        BLANK(),
+			        [Median ED Departure Time]
+			    )
+		lineageTag: ba303e30-703d-4d26-9f04-a2ab532e469c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Elective Surgeries' =
+			
+			CALCULATE(
+			    SUM('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0006",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[reported_measure_name] IN {
+			        "Urgent elective surgery",
+			        "Semi-urgent elective surgery",
+			        "Non-urgent elective surgery"
+			    }
+			)
+		lineageTag: 75e43ed1-c83b-4e3f-b397-3c6d0d078564
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Hospital Waiting Time' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0009",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+		lineageTag: 6d82a3fd-7040-4d04-8b2a-46008ed52186
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Hospital Surgery Within Recommended Time' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0008",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[is_total] = TRUE()
+			)
+		lineageTag: 7570914c-c7c5-4d49-9035-15e09622fe08
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Elective Median Wait (days)' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0009",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[reported_measure_name] IN {
+			        "Urgent elective surgery",
+			        "Semi-urgent elective surgery",
+			        "Non-urgent elective surgery"
+			    }
+			)
+		lineageTag: 04097ee5-82f7-4248-b9b6-1fcf51f8208c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Surgery Within Recommended Time' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0008",
+			    'gold_fact_measure_value'[suppression_count] = 0,
+			    'gold_dim_reported_measure'[reported_measure_name] IN {
+			        "Urgent elective surgery",
+			        "Semi-urgent elective surgery",
+			        "Non-urgent elective surgery"
+			    }
+			)
+		lineageTag: 7eb75150-2d09-440b-bbcb-2cdec8c1a3c8
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'National Median Elective Surgery Wait (Days)' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    REMOVEFILTERS('gold_dim_reporting_unit'),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0009",
+			    'gold_fact_measure_value'[reporting_unit_code] = "NAT",
+			    'gold_fact_measure_value'[suppression_count] = 0
+			)
+		lineageTag: 084c7e7e-18b2-4e0e-9334-b516a81acca0
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Long Wait Rate by Procedure (%)' =
+			
+			CALCULATE(
+			    AVERAGE('gold_fact_measure_value'[value]),
+			    'gold_fact_measure_value'[source_measure_code] = "MYH0007",
+			    'gold_fact_measure_value'[suppression_count] = 0
+			)
+		lineageTag: e1b27c9c-4a07-41c0-955e-aa305394e843
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reporting_unit_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 4205fe18-89f3-4e78-a3a8-ff54ca7a16e2
+		sourceLineageTag: reporting_unit_key
+		summarizeBy: sum
+		sourceColumn: reporting_unit_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column measure_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 2247635c-fa32-4cd2-b4aa-616d1e27fec5
+		sourceLineageTag: measure_key
+		summarizeBy: none
+		sourceColumn: measure_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_key
+		dataType: int64
+		formatString: 0
+		lineageTag: bef525b4-7393-45b9-b363-0be4cba81aa2
+		sourceLineageTag: period_key
+		summarizeBy: none
+		sourceColumn: period_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column reported_measure_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 84a2cd3c-fdd3-4cd9-9004-8a6a9af2b296
+		sourceLineageTag: reported_measure_key
+		summarizeBy: sum
+		sourceColumn: reported_measure_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_set_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4894d4bc-2692-4bd4-a323-204ed3823424
+		sourceLineageTag: data_set_id
+		summarizeBy: sum
+		sourceColumn: data_set_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_measure_code
+		dataType: string
+		lineageTag: 16d6de97-8443-4c3d-89bd-24f8ea80ec76
+		sourceLineageTag: source_measure_code
+		summarizeBy: none
+		sourceColumn: source_measure_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column measure_code
+		dataType: string
+		lineageTag: 060a3250-e930-481a-9ac8-8d8d79b6f54b
+		sourceLineageTag: measure_code
+		summarizeBy: none
+		sourceColumn: measure_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column reported_measure_code
+		dataType: string
+		lineageTag: 51d3e09f-8c2b-4c4e-92b2-1d2d8ca39bd8
+		sourceLineageTag: reported_measure_code
+		summarizeBy: none
+		sourceColumn: reported_measure_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_unit_code
+		dataType: string
+		isHidden
+		lineageTag: 5e44e9ad-cb10-42ca-b80b-975a13a00870
+		sourceLineageTag: reporting_unit_code
+		summarizeBy: none
+		sourceColumn: reporting_unit_code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_unit_type_code
+		dataType: string
+		lineageTag: bff4f7da-050a-45f7-acae-5a6d10968a31
+		sourceLineageTag: reporting_unit_type_code
+		summarizeBy: none
+		sourceColumn: reporting_unit_type_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column group_number
+		dataType: int64
+		formatString: 0
+		lineageTag: cacd3617-5d1c-4ef8-aec4-1ba5efe17743
+		sourceLineageTag: group_number
+		summarizeBy: sum
+		sourceColumn: group_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: double
+		lineageTag: 25f1f6ff-f836-417b-809b-cce0f97c4c47
+		sourceLineageTag: value
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lower_value
+		dataType: double
+		lineageTag: 90eb1a19-255e-497d-b450-4e84a495b7d2
+		sourceLineageTag: lower_value
+		summarizeBy: sum
+		sourceColumn: lower_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column upper_value
+		dataType: double
+		lineageTag: ba12269e-ac8b-4b54-8fa5-dafba51d34ad
+		sourceLineageTag: upper_value
+		summarizeBy: sum
+		sourceColumn: upper_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column suppression_count
+		dataType: int64
+		formatString: 0
+		lineageTag: f0dc37c4-625b-4dc4-919d-7aa1f2f9fb1c
+		sourceLineageTag: suppression_count
+		summarizeBy: sum
+		sourceColumn: suppression_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column caveat_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f1c1805-5aff-4e87-9180-ddbd3c9cac52
+		sourceLineageTag: caveat_count
+		summarizeBy: sum
+		sourceColumn: caveat_count
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_suppressed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7ee34f45-1f15-425c-9cfd-7b2cf90cd918
+		sourceLineageTag: is_suppressed
+		summarizeBy: none
+		sourceColumn: is_suppressed
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_value_missing
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0557b14f-1dd1-49f6-a8b9-8e30e6bc793e
+		sourceLineageTag: is_value_missing
+		summarizeBy: none
+		sourceColumn: is_value_missing
+
+		annotation SummarizationSetBy = Automatic
+
+	column suppression_reason_text
+		dataType: string
+		lineageTag: e1a48698-84c3-4ebc-bd4a-5753857bafda
+		sourceLineageTag: suppression_reason_text
+		summarizeBy: none
+		sourceColumn: suppression_reason_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column caveat_reason_text
+		dataType: string
+		lineageTag: 8339879f-153c-4c69-b49e-8a7621912798
+		sourceLineageTag: caveat_reason_text
+		summarizeBy: none
+		sourceColumn: caveat_reason_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bc364776-4a7b-4e6a-bf5c-3e17cf5fe55d
+		sourceLineageTag: reporting_start_date
+		summarizeBy: none
+		sourceColumn: reporting_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 40222c37-c25b-45e0-9956-336874c10cc1
+		sourceLineageTag: reporting_end_date
+		summarizeBy: none
+		sourceColumn: reporting_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column gold_processed_at_utc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d23092bf-707e-4f20-81e3-738c437a7aec
+		sourceLineageTag: gold_processed_at_utc
+		summarizeBy: none
+		sourceColumn: gold_processed_at_utc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_fact_measure_value = entity
+		mode: directLake
+		source
+			entityName: gold_fact_measure_value
+			schemaName: dbo
+			expressionSource: 'DirectLake - HospitalAnalyticsLakehouse'
+

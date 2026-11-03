@@ -1,0 +1,81 @@
+table gold_dim_period
+	lineageTag: a17d7fe5-360d-42ad-85e0-6e7dfb2e46fd
+	sourceLineageTag: [dbo].[gold_dim_period]
+
+	column period_key
+		dataType: int64
+		formatString: 0
+		lineageTag: c1ba4bb7-921c-411a-8e96-8742f119e1b4
+		sourceLineageTag: period_key
+		summarizeBy: none
+		sourceColumn: period_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_label
+		dataType: string
+		lineageTag: 5dfd5ab7-1794-4468-a970-a9dd9886c788
+		sourceLineageTag: period_label
+		summarizeBy: none
+		sourceColumn: period_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_type
+		dataType: string
+		lineageTag: d9a07c0e-2315-4c4e-8d05-14cbb785bda3
+		sourceLineageTag: period_type
+		summarizeBy: none
+		sourceColumn: period_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column financial_year
+		dataType: string
+		lineageTag: 9a248301-866c-4cdb-acf4-5ac5d56c98e9
+		sourceLineageTag: financial_year
+		summarizeBy: none
+		sourceColumn: financial_year
+		sortByColumn: period_sort_year
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_sort_year
+		dataType: int64
+		formatString: 0
+		lineageTag: d6757b8f-f84b-4d1c-a430-6f751130b731
+		sourceLineageTag: period_sort_year
+		summarizeBy: none
+		sourceColumn: period_sort_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7f53caae-d2ea-439b-81c6-d20326a37792
+		sourceLineageTag: period_start_date
+		summarizeBy: none
+		sourceColumn: period_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_end_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cf2bf793-29d5-495b-a967-cec5cb1e712f
+		sourceLineageTag: period_end_date
+		summarizeBy: none
+		sourceColumn: period_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_dim_period = entity
+		mode: directLake
+		source
+			entityName: gold_dim_period
+			schemaName: dbo
+			expressionSource: 'DirectLake - HospitalAnalyticsLakehouse'
+

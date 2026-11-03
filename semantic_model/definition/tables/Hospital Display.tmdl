@@ -1,0 +1,25 @@
+table 'Hospital Display'
+	lineageTag: 53a02003-e586-4584-9895-f57d19087e1b
+
+	column Display
+		lineageTag: f98ecbec-9a72-4c30-9bcc-495ab137094f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Display]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Hospital Display' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Display", STRING,
+				    {
+				        {"Top 10"},
+				        {"All"}
+				    }
+				)
+
+	annotation PBI_Id = ebd46a5a60294db881bcc9dbb3ad403f
+
