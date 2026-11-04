@@ -4,7 +4,6 @@ An end-to-end data engineering and analytics project built on Microsoft Fabric, 
 
 The workflow uses Microsoft Fabric Data Factory pipelines for ingestion and end-to-end orchestration, Fabric Lakehouse and Delta Lake for data storage, PySpark for data processing, and Power BI with DAX for reporting. A scheduled master pipeline coordinates the ingestion, transformation, Gold modelling, and semantic model refresh.
 
-Developed through AI-assisted pair programming, with Claude (Anthropic) and ChatGPT (OpenAI) supporting implementation, troubleshooting, and technical reviews. The project concept, architecture, technology selections, data modelling approach, and final design decisions were my own. I used AI tools to accelerate development, explore solutions, and review code, while taking responsibility for understanding, testing, and validating each component of the implementation.
 
 ## Architecture
 
@@ -124,7 +123,7 @@ The AIHW API is publicly accessible, but the Fabric workspace, Lakehouse, pipeli
 
 This is an independent portfolio project built as a practical way to develop my experience with data engineering and analytics engineering workflows. I worked through the source API, ingestion design, transformations, dimensional model, semantic layer, and reporting, testing the pipeline in Fabric as I went.
 
-AI tools were used as development support, not as a substitute for reviewing the implementation. I made the project and modelling decisions and checked the outputs against the source data and the intended reporting use.
+AI-assisted tools, including ChatGPT (OpenAI) and Claude (Anthropsc), were used as supplementary resources during development for troubleshooting, exploring implementation approaches, and reviewing code and documentation. The project concept, architecture, technology selections, data modelling approach, implementation decisions, and final outputs were developed and evaluated by me. AI-generated suggestions were reviewed and adapted where appropriate.
 
 ---
 
